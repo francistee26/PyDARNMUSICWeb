@@ -1,0 +1,147 @@
+<VirtualHost *:80>
+	ServerAdmin admin@pymusicweb.localhost
+	ServerName pymusicweb.localhost
+	ServerAlias www.pymusicweb.localhost
+	DocumentRoot /home/fran/code/newMusic/WebMSTID
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	Alias /static /home/fran/code/newMusic/WebMSTID/staticfiles
+	<Directory /home/fran/code/newMusic/WebMSTID/staticfiles>
+		Require all granted
+	</Directory>
+
+	<Directory /home/fran/code/newMusic/WebMSTID/pymusicweb>
+		<Files wsgi.py>
+			Require all granted
+		</Files>
+	</Directory>
+	WSGIApplicationGroup %{GLOBAL}
+	WSGIDaemonProcess pymusicweb python-home=/home/fran/.local/share/virtualenvs/WebMSTID-pi3Qt46Z python-path=/home/fran/code/newMusic/WebMSTID/
+	WSGIProcessGroup pymusicweb
+	WSGIScriptAlias / /home/fran/code/newMusic/WebMSTID/pymusicweb/wsgi.py
+</VirtualHost>
+
+#sudo celery -A pymusicweb flower
+#sudo docker run --rm -it -p 3000:80 -p 587:25 rnwood/smtp4dev
+#sudo docker run -d -p 6379:6379 redis
+#celery -A pymusicweb worker --loglevel=info
+
+
+
+<IfModule mod_ssl.c>
+    
+    <VirtualHost _default_:443>
+        ServerAdmin admin@pydarnmusicweb.com
+        ServerName pydarnmusicweb.com
+        ServerAlias www.pydarnmusicweb.com
+        DocumentRoot /home/fran/code/newMusic/WebMSTID
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+     
+    
+        SSLEngine on
+        SSLCertificateFile /home/fran/code/newMusic/certificate/certificate.crt
+        SSLCertificateKeyFile /home/fran/code/newMusic/certificate/private.key
+
+        <FilesMatch "\.(cgi|shtml|phtml|php)$">
+                        SSLOptions +StdEnvVars
+        </FilesMatch>
+    
+        <Directory /usr/lib/cgi-bin>
+                        SSLOptions +StdEnvVars
+        </Directory>
+
+        Alias /static /home/fran/code/newMusic/WebMSTID/staticfiles
+        <Directory /home/fran/code/newMusic/WebMSTID/staticfiles>
+                Options Indexes FollowSymLinks Includes ExecCGI
+                AllowOverride All
+                Require all granted
+                Allow from all
+        </Directory>
+        <Directory /home/fran/code/newMusic/WebMSTID/staticfiles/rti>
+                Options Indexes FollowSymLinks Includes ExecCGI
+                AllowOverride All
+                Require all granted
+                Allow from all
+        </Directory>
+
+        <Directory /media/fran/Expansion>
+                Options Indexes FollowSymLinks Includes ExecCGI
+                AllowOverride All
+                Require all granted
+                Allow from all
+        </Directory>
+
+        <Directory /home/fran/code/newMusic/WebMSTID/pymusicweb>
+                <Files wsgi.py>
+                        Require all granted
+                </Files>
+        </Directory>
+        WSGIApplicationGroup %{GLOBAL}
+        WSGIDaemonProcess pymusicweb python-home=/home/fran/.local/share/virtualenvs/We>
+        WSGIProcessGroup pymusicweb
+        WSGIScriptAlias / /home/fran/code/newMusic/WebMSTID/pymusicweb/wsgi.py
+
+                     
+    
+    </VirtualHost>
+    
+</IfModule>
+
+
+
+
+
+ ["ADE","ADW","BKS","CVE","CVW","CLY","FHE","FHW","GBR","HAN","HOK","HKW","INV","CLY","KAP","KSR","KOD","LYR","PYK","PGR","RKN","SAS","SCH","STO","WAL"]
+
+getDataSet                  
+stringify_signal            
+stringify_signal_list       
+beamInterpolation           
+defineLimits                
+checkDataQuality            
+applyLimits                 
+determineRelativePosition   
+timeInterpolation           
+filterTimes                 
+detrend                     
+nan_to_num                  
+windowData                  
+calculateFFT                
+calculateDlm                
+calculateKarr               
+simulator                   
+scale_karr                  
+detectSignals              
+add_signal                  
+del_signal      
+
+
+genCmap
+
+
+getParamDict
+
+
+plot_rti            
+plot_freq           
+plot_searchnoise    
+plot_skynoise       
+plot_cpid           
+plot_nave           
+rti_title           
+draw_axes           
+read_data           
+rti_panel  
+
+
+daynight_terminator  
+dateToDecYear        
+dateToYyyymmdd       
+datetimeToEpoch      
+julToDatetime        
+parseDate            
+parseTime            
+timeYrsecToDate      
+yyyymmddToDate       
